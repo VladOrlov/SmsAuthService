@@ -21,6 +21,6 @@
 
     `$ mvn spring-boot:run`
     
-4. http://localhost:9999/swagger-ui.html - Check documentation
+4. Check API documentation: http://localhost:9999/swagger-ui.html
 
 
