@@ -2,6 +2,7 @@ package com.digi.entity.response;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
@@ -11,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Slf4j
+@ApiModel(value="ExceptionResponse", description="Exception Response `success = false`")
 public class ExceptionResponse extends SuccessResultResponse {
 	@JsonIgnore
 	private Exception ex;

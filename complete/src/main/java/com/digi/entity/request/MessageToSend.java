@@ -1,6 +1,8 @@
 package com.digi.entity.request;
 
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,7 +13,10 @@ import java.io.Serializable;
  */
 @Getter
 @Setter
+@ApiModel(value="MessageToSend", description="SMS message")
 public class MessageToSend implements Serializable {
+	@ApiModelProperty(value = "Phone number", example = "14053264519")
 	private String to;
+	@ApiModelProperty(value = "SMS - body text", example = "TLV: test message =)")
 	private String text;
 }
