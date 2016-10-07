@@ -7,22 +7,25 @@
 
 ### HOWTO start:
 
-*1. Clone project:*
+**1. Clone project:**
     
     `$ git clone https://github.com/sealTLV/TwilioSmsAuthService`
 
-*2. Edit configuration-file: `application.properties`*
+**2. Edit configuration-file: `application.properties`**
   
     `$ cd TwilioSmsAuthService/complete/src/main/resources`
-    `$ gedit application.properties`
-    
-    Pay attention for: `#DB properties`, `#sms-twilio-credentials`, `#sms-admin`
+    `$ gedit application.properties`  
   
-*3. Run:*
+  **Pay attention for:**
+    `#DB properties`
+    `#sms-twilio-credentials`
+    `#sms-admin`
+  
+**3. Run:**
 
     `$ cd TwilioSmsAuthService/complete`
     `$ mvn spring-boot:run`
     
-*4. Read API-documentation:* `http://localhost:9999/swagger-ui.html`
+**4. Read API-documentation:** `http://localhost:9999/swagger-ui.html`
 
 
