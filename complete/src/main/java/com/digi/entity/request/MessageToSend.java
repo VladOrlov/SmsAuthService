@@ -15,8 +15,8 @@ import java.io.Serializable;
 @Setter
 @ApiModel(value="MessageToSend", description="SMS message")
 public class MessageToSend implements Serializable {
-	@ApiModelProperty(value = "Phone number", example = "14053264519")
+	@ApiModelProperty(value = "Phone number", example = "14053264519", required = true)
 	private String to;
-	@ApiModelProperty(value = "SMS - body text", example = "TLV: test message =)")
+	@ApiModelProperty(value = "SMS - body text", example = "TLV: test message =)", required = true)
 	private String text;
 }

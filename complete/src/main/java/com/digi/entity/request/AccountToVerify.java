@@ -18,6 +18,6 @@ import java.io.Serializable;
 @RequiredArgsConstructor
 @ApiModel(value="AccountToVerify", description="Sample model for auth user by phone number")
 public class AccountToVerify implements Serializable {
-	@ApiModelProperty(value = "Phone number", example = "14053264519")
+	@ApiModelProperty(value = "Phone number", example = "14053264519", required = true)
 	@NonNull private String phone;
 }
