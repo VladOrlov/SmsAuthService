@@ -1,6 +1,7 @@
 package com.digi.service;
 
 import com.digi.config.RandomKeyConfig;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,7 @@ import static org.bitbucket.dollar.Dollar.$;
 @Slf4j
 public class RandomService {
 
+	@Getter
 	private final RandomKeyConfig config;
 	private String validCharacters;
 
