@@ -20,5 +20,7 @@
     `$ cd TwilioSmsAuthService/complete`
 
     `$ mvn spring-boot:run`
+    
+4. Check documentation at http://localhost:9999/swagger-ui.html
 
 
