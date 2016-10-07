@@ -9,12 +9,12 @@
 
 **1. Clone project:**
     
-    `$ git clone https://github.com/sealTLV/TwilioSmsAuthService`
+    $ git clone https://github.com/sealTLV/TwilioSmsAuthService
 
 **2. Edit configuration-file: `application.properties`**
   
-    `$ cd TwilioSmsAuthService/complete/src/main/resources`
-    `$ gedit application.properties`  
+    $ cd TwilioSmsAuthService/complete/src/main/resources
+    $ gedit application.properties
   
   **Pay attention for:**
     `#DB properties`
@@ -23,9 +23,9 @@
   
 **3. Run:**
 
-    `$ cd TwilioSmsAuthService/complete`
-    `$ mvn spring-boot:run`
+    $ cd TwilioSmsAuthService/complete
+    $ mvn spring-boot:run
     
-**4. Read API-documentation:** `http://localhost:9999/swagger-ui.html`
+**4. Read API-documentation:** http://localhost:9999/swagger-ui.html
 
 
