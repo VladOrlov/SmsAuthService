@@ -15,7 +15,6 @@ import static org.bitbucket.dollar.Dollar.$;
 @Slf4j
 public class RandomService {
 
-	@Getter
 	private final RandomKeyConfig config;
 	private String validCharacters;
 

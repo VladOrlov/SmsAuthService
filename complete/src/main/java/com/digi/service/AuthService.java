@@ -46,9 +46,7 @@ public class AuthService {
 		save(existed);
 
 		return existed;
-
 	}
-
 
 	public PhoneAuthLog confirm (AccountToVerify account) {
 
