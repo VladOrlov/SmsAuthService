@@ -31,9 +31,9 @@
 
 ### HOWTO DOCKER:
 
-**1. Register repository `twilio-sms-verification-service`
+**1. Register repository `twilio-sms-verification-service`**
 
-**2. Build and upload image to Docker
+**2. Build and upload image to Docker**
 
     $ cd TwilioSmsAuthService/complete
     $ mvn clean package docker:build
