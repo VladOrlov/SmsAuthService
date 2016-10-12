@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.inject.Inject;
-import java.util.Date;
+import java.util.Calendar;
 
 @RestController
 @RequiredArgsConstructor(onConstructor = @__({@Inject}))
@@ -24,7 +24,7 @@ public class SmsController {
 
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public ResponseEntity<Message> testAdmin () {
-		Message m = smsService.sendAdminMessage("TLV: test message from "+ new Date());
+		Message m = smsService.sendAdminMessage("TLV: test message from " + Calendar.getInstance().getTime());
 		return ResponseEntity.ok().body(m);
 	}
 

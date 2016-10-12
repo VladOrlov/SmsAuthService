@@ -11,6 +11,7 @@ import com.digi.entity.request.AccountToConfirm;
 import com.digi.entity.request.AccountToVerify;
 import com.digi.entity.request.AccountToVerifyExt;
 import com.digi.entity.request.SmsTemplate;
+import com.digi.entity.response.CallBackResponse;
 import com.digi.repository.PhoneAuthLogRepository;
 import com.twilio.rest.api.v2010.account.Message;
 import lombok.Getter;
@@ -18,20 +19,24 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.Accessors;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
 import javax.inject.Inject;
-import java.util.Date;
+import java.net.URI;
+import java.util.Calendar;
 
 @Service
 @RequiredArgsConstructor(onConstructor = @__({@Inject}))
 @Slf4j
-@Getter  @Accessors(fluent=true)
-
+@Getter
+@Accessors(fluent = true)
 public class AuthService {
 
 	private final SmsService smsService;
 	private final RandomService randService;
 	private final PhoneAuthLogRepository rLogs;
 	private final TextsConfig txt;
+	private final RestTemplate doCallback;
 
 	public PhoneAuthLog authorise (AccountToVerifyExt account) {
 
@@ -42,7 +47,8 @@ public class AuthService {
 		}
 
 		String secureCode = randService().generateCode();
-		existed = new PhoneAuthLog(account.getPhone(), new Date(), secureCode, AuthStatus.Wait);
+		existed = new PhoneAuthLog(account.getPhone(), Calendar.getInstance().getTime(), secureCode, AuthStatus.Wait);
+		existed.setCallBackUri(account.getCallBackUri());
 
 		String message = compileMessageText(account.getTemplate(), secureCode);
 
@@ -66,29 +72,46 @@ public class AuthService {
 			throw new AlreadyConfirmed(account.getPhone());
 		}
 
-		if(!existed.getCode().contentEquals(account.clearConfirmationCode())){
+		if (account.getCallBackUri() != null) {
+			existed.setCallBackUri(account.getCallBackUri());
+		}
+
+		if (!existed.getCode().contentEquals(account.clearConfirmationCode())) {
+			doCallBack(existed, false);
 			throw new NotValidConfirmationCode(account.getPhone());
 		}
 
 		existed.setAuthStatus(AuthStatus.Confirmed);
-		existed.setConfirmDate(new Date());
-
+		existed.setConfirmDate(Calendar.getInstance().getTime());
 		save(existed);
+		doCallBack(existed, true);
 		return existed;
 	}
 
-	private PhoneAuthLog getFromLog(AccountToVerify account){
+	public void doCallBack (PhoneAuthLog account, boolean success) {
+		if (account.getCallBackUri() != null && !account.getCallBackUri().isEmpty()) {
+			try {
+				doCallback.postForLocation(URI.create(account.getCallBackUri()),
+						new CallBackResponse(account, success));
+			} catch (IllegalArgumentException ex) {
+				log.error(ex.getMessage(), ex);
+			}
+		}
+	}
+
+
+	private PhoneAuthLog getFromLog (AccountToVerify account) {
 		return rLogs().findByPhone(account.getPhone());
 	}
 
-	private String compileMessageText(SmsTemplate templ, String secureCode){
-		if(templ==null || templ.getVerificationText()==null || templ.getVerificationText().isEmpty()){
+	private String compileMessageText (SmsTemplate templ, String secureCode) {
+		if (templ == null || templ.getVerificationText() == null || templ.getVerificationText().isEmpty()) {
 			templ = (SmsTemplate) txt();
 		}
 		return templ.customVerificationText(randService().customizeCode(secureCode));
 	}
 
-	private void save(PhoneAuthLog logAcc){
+	private void save (PhoneAuthLog logAcc) {
 		rLogs().save(logAcc);
 		log.debug("PhoneAuthLog/afterSave: {}", logAcc);
 	}

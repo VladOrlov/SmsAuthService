@@ -45,6 +45,11 @@ public class PhoneAuthLog extends IdEntity {
 	@Column(name = "sid")
 	private String smsId;
 
+	@Column(name = "callbackuri")
+	private String callBackUri;
+
+
+
 	public PhoneAuthLog (String phone, Date initDate, String code, AuthStatus status) {
 		this(phone, initDate);
 		setCode(code);
