@@ -5,7 +5,7 @@
 1. https://www.twilio.com/ - register Twilio account
 2. http://www.receive-sms-online.info/read-sms.php?phone=14053264519 - Read test messages
 
-### HOWTO start:
+### HOWTO Start:
 
 **1. Clone project:**
     
@@ -29,3 +29,13 @@
 **4. Read API-documentation:** http://localhost:9999/swagger-ui.html
 
 
+### HOWTO DOCKER:
+
+**1. Register repository `twilio-sms-verification-service`
+
+**2. Build and upload image to Docker
+
+    $ cd TwilioSmsAuthService/complete
+    $ mvn clean package docker:build
+    $ docker login --username=luizavladislavna --email=luizavladislavna@gmail.com
+    $ docker push luizavladislavna/twilio-sms-verification-service
