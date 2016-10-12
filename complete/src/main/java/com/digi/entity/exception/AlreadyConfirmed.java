@@ -5,6 +5,6 @@ package com.digi.entity.exception;
  */
 public class AlreadyConfirmed extends RuntimeException {
 	public AlreadyConfirmed (String ph) {
-		super("The number "+ph+" is already confirm authorization.");
+		super(String.format("The number %1$s is already confirm authorization.", ph));
 	}
 }

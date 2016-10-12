@@ -15,8 +15,10 @@
  */
 package com.digi;
 
+import com.digi.entity.request.AccountToConfirm;
 import com.digi.entity.request.AccountToVerify;
 import com.digi.util.JsonUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +27,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultActions;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -35,6 +36,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
+@Slf4j
 public class AuthControllerTests {
 
 	@Autowired
@@ -53,7 +55,7 @@ public class AuthControllerTests {
 				.andDo(print())
 				.andExpect(status().isOk())
 				.andExpect(content().json(
-						"{\"success\":0,\"error\":\"NotValidForConfirmation\",\"message\":\"The number 123456 is not a valid phone number for confirmation.\"}"
+						"{\"success\":0,\"error\":\"NotValidAccountForConfirmation\",\"message\":\"The number 123456 is not a valid phone number for confirmation.\"}"
 				));
 	}
 
@@ -77,5 +79,6 @@ public class AuthControllerTests {
 				.andDo(print())
 				.andExpect(status().isOk());
 	}
+
 
 }

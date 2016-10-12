@@ -1,7 +1,9 @@
 package com.digi.controller;
 
 import com.digi.entity.db.PhoneAuthLog;
+import com.digi.entity.request.AccountToConfirm;
 import com.digi.entity.request.AccountToVerify;
+import com.digi.entity.request.AccountToVerifyExt;
 import com.digi.entity.response.SuccessResponse;
 import com.digi.service.AuthService;
 import io.swagger.annotations.ApiParam;
@@ -26,7 +28,7 @@ public class AuthController {
 	@RequestMapping(value = "/Authorise", method = RequestMethod.POST)
 	public ResponseEntity<SuccessResponse> authorise (
 			@ApiParam(value = "Account phone number to verify", required = true)
-			@RequestBody AccountToVerify account) {
+			@RequestBody AccountToVerifyExt account) {
 		PhoneAuthLog acc = authService.authorise(account);
 		return ResponseEntity.ok().body(new SuccessResponse(acc));
 	}
@@ -34,7 +36,8 @@ public class AuthController {
 	@RequestMapping(value = "/Confirm", method = RequestMethod.POST)
 	public ResponseEntity<SuccessResponse> confirm (
 			@ApiParam(value = "Account phone number to confirm verification", required = true)
-			@RequestBody AccountToVerify account) {
+			@RequestBody AccountToConfirm account) {
+
 		PhoneAuthLog acc = authService.confirm(account);
 		return ResponseEntity.ok().body(new SuccessResponse(acc));
 	}

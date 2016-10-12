@@ -1,6 +1,8 @@
 package com.digi.config;
 
+import com.digi.entity.request.SmsTemplate;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
@@ -11,17 +13,7 @@ import java.io.Serializable;
  */
 @Configuration
 @ConfigurationProperties(prefix = "app.text")
-@Data
-public class TextsConfig implements Serializable {
-	private String applicationName;
-	private String verification;
+@NoArgsConstructor
+public class TextsConfig extends SmsTemplate {
 
-
-	public String customVerificationText(String authCode){
-		return customText(verification).replaceAll("#authCode#", authCode);
-	}
-
-	private String customText(String txt){
-		return txt.replaceAll("#applicationName#", applicationName);
-	}
 }

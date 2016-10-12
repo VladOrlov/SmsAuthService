@@ -16,6 +16,7 @@
 package com.digi;
 
 import com.digi.config.RandomKeyConfig;
+import com.digi.config.TextsConfig;
 import com.digi.config.TwilioCredentials;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -36,6 +37,8 @@ public class ConfigurationTests {
 	@Autowired
 	private RandomKeyConfig randKeyCfg;
 	@Autowired
+	private TextsConfig smsCfg;
+	@Autowired
 	private TwilioCredentials twilio;
 
 
@@ -47,6 +50,14 @@ public class ConfigurationTests {
 		assertThat(randKeyCfg.getDelimiter()).isNotEmpty();
 		assertThat(randKeyCfg.getWithLetters()).isIn(true, false);
 		assertThat(randKeyCfg.getPartitionSize()).isLessThan(randKeyCfg.getSize());
+	}
+
+	@Test
+	public void testSmsTestsCfg () throws Exception {
+		log.debug("smsCfg: {}", smsCfg);
+		assertThat(smsCfg.getVerificationText()).isNotEmpty();
+		assertThat(smsCfg.getVerificationText()).contains("#authCode#");
+		assertThat(smsCfg.getApplicationName()).isNotEmpty();
 	}
 
 	@Test
