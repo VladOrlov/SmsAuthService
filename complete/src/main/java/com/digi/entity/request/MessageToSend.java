@@ -1,6 +1,8 @@
 package com.digi.entity.request;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -13,6 +15,8 @@ import java.io.Serializable;
  */
 @Getter
 @Setter
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @ApiModel(value="MessageToSend", description="SMS message")
 public class MessageToSend implements Serializable {
 	@ApiModelProperty(value = "Phone number", example = "14053264519", required = true)

@@ -1,6 +1,8 @@
 package com.digi.entity.request;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -19,6 +21,8 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @ApiModel(value="AccountToVerify", description="Sample model for auth user by phone number")
 public class AccountToVerify implements Serializable {
 	@ApiModelProperty(value = "Phone number", example = "14053264519", required = true)

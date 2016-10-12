@@ -1,6 +1,8 @@
 package com.digi.entity.request;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -19,6 +21,8 @@ import java.io.Serializable;
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @ApiModel(value="AccountToConfirm", description="Sample model for confirmation")
 public class AccountToConfirm extends AccountToVerify {
 	@ApiModelProperty(value = "Verification code", example = "CW-7T-86-3H", required = true)

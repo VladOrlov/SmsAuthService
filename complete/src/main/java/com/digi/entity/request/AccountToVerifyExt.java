@@ -1,6 +1,8 @@
 package com.digi.entity.request;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -15,9 +17,10 @@ import java.io.Serializable;
  */
 @Data
 @NoArgsConstructor
-@RequiredArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @ApiModel(value="AccountToVerifyExt", description="Send sms with special text!")
 public class AccountToVerifyExt extends AccountToVerify {
 	@ApiModelProperty(value = "Sms Template")
-	@NonNull private SmsTemplate template;
+	private SmsTemplate template;
 }

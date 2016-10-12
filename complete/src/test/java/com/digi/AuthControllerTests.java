@@ -30,7 +30,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
@@ -45,7 +45,9 @@ public class AuthControllerTests {
 
 	@Test
 	public void testNotValidForConfirmation () throws Exception {
-		AccountToVerify account = new AccountToVerify("123456");
+		AccountToConfirm account = new AccountToConfirm();
+		account.setPhone("123456");
+		account.setCode("test");
 
 		this.mockMvc.perform(
 				post("/account/Confirm")
@@ -54,9 +56,8 @@ public class AuthControllerTests {
 						.accept(MediaType.APPLICATION_JSON))
 				.andDo(print())
 				.andExpect(status().isOk())
-				.andExpect(content().json(
-						"{\"success\":0,\"error\":\"NotValidAccountForConfirmation\",\"message\":\"The number 123456 is not a valid phone number for confirmation.\"}"
-				));
+				.andExpect(jsonPath("$.error").value("NotValidAccountForConfirmation"))
+				.andExpect(jsonPath("$.success").value(0));
 	}
 
 	@Test
