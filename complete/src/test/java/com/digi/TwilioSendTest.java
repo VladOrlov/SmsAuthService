@@ -43,5 +43,4 @@ public class TwilioSendTest {
 				.andExpect(jsonPath("$.numSegments").value("1"));
 	}
 
-
 }
