@@ -1,8 +1,9 @@
 package com.digi.services;
 
+import com.digi.entity.db.CallBackProperties;
 import com.digi.entity.db.PhoneAuthLog;
 import com.digi.help.AppSpringBootTestNG;
-import com.digi.service.impl.RestPostCallBackService;
+import com.digi.service.impl.RestCallBackService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.client.HttpClientErrorException;
@@ -19,7 +20,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class CallBackTests extends AppSpringBootTestNG {
 
 	@Autowired
-	protected RestPostCallBackService callBack;
+	protected RestCallBackService callBack;
 
 	@Test
 	public void testCallBackService () {
@@ -38,11 +39,13 @@ public class CallBackTests extends AppSpringBootTestNG {
 	}
 
 
-	@Test(expectedExceptions = HttpClientErrorException.class, expectedExceptionsMessageRegExp = "405 Method Not Allowed")
+	@Test
 	public void testValidUrlNotAllowedMethod () {
 		PhoneAuthLog acc = new PhoneAuthLog();
-		acc.setCallBackUri("https://www.google.com.ua/#q=test");
-		log.debug("callBack: {}", callBack);
+		acc.setCallBack(new CallBackProperties(
+				"https://www.google.com.ua/#q=test",
+				"POST"
+		));
 		assertThat(callBack.doCallBack(acc, true)).isFalse();
 	}
 }

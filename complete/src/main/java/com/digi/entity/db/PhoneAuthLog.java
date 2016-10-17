@@ -2,6 +2,10 @@ package com.digi.entity.db;
 
 import com.digi.entity.IdEntity;
 import com.digi.entity.enums.AuthStatus;
+import com.digi.entity.enums.CallbackHttpMethod;
+import com.digi.entity.request.AccountToConfirm;
+import com.digi.entity.request.AccountToVerify;
+import com.digi.entity.request.AccountToVerifyExt;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,8 +13,10 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -45,16 +51,17 @@ public class PhoneAuthLog extends IdEntity {
 	@Column(name = "sid")
 	private String smsId;
 
-	@Column(name = "callbackuri")
-	private String callBackUri;
+	@Embedded
+	private CallBackProperties callBack;
 
 
-
-	public PhoneAuthLog (String phone, Date initDate, String code, AuthStatus status) {
-		this(phone, initDate);
+	public PhoneAuthLog (AccountToVerify  account, Calendar initDate, String code, AuthStatus status) {
+		this(account.getPhone(), initDate.getTime());
 		setCode(code);
 		setAuthStatus(status);
+		setCallBack(new CallBackProperties(account.getCallBackUri(),account.getCallBackMethod() ));
 	}
+
 
 	public AuthStatus getAuthStatus () {
 		return AuthStatus.valueOf(status);
@@ -64,4 +71,8 @@ public class PhoneAuthLog extends IdEntity {
 		setStatus(st.getId());
 	}
 
+
+	public void validateCallBack (AccountToConfirm account) {
+		getCallBack().validateCallBack(account);
+	}
 }

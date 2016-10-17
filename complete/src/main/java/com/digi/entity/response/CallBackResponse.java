@@ -3,6 +3,8 @@ package com.digi.entity.response;
 import com.digi.entity.db.PhoneAuthLog;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -20,6 +22,14 @@ public class CallBackResponse extends SuccessResultResponse {
 		this.account = account;
 		this.callDate = Calendar.getInstance().getTime();
 		this.setSuccess(success ? 1 : 0);
+	}
 
+	public MultiValueMap<String, String> toParams () {
+		MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
+		params.set("account", getAccount().getPhone());
+		params.set("success", String.valueOf(getSuccess()));
+		params.set("confirmDate", String.valueOf(getAccount().getConfirmDate()));
+		params.set("callDate", String.valueOf(getCallDate()));
+		return params;
 	}
 }

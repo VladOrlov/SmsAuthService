@@ -27,6 +27,8 @@ import java.io.Serializable;
 public class AccountToVerify implements Serializable {
 	@ApiModelProperty(value = "Phone number", example = "14053264519", required = true)
 	@NonNull private String phone;
-	@ApiModelProperty(value = "CallBack notification url, if needed", example = "14053264519", required = true)
+	@ApiModelProperty(value = "CallBack notification url, if needed", example = "http://test.com")
 	private String callBackUri;
+	@ApiModelProperty(value = "CallBack notification Method, if needed", example = "GET")
+	private String callBackMethod;
 }

@@ -28,13 +28,13 @@ import java.util.Calendar;
 @Accessors(fluent = true)
 @RequiredArgsConstructor(onConstructor = @__({@Inject}))
 @Slf4j
-public class DefaultAuthService implements AuthService{
+public class DefaultAuthService implements AuthService {
 
 	private final TwilioSmsService smsService;
 	private final DefaultRandomService randService;
 	private final PhoneAuthLogRepository rLogs;
 	private final TextsConfig txt;
-	private final RestPostCallBackService callBack;
+	private final RestCallBackService callBack;
 
 	public PhoneAuthLog authorise (AccountToVerifyExt account) {
 
@@ -45,8 +45,7 @@ public class DefaultAuthService implements AuthService{
 		}
 
 		String secureCode = randService().generateCode();
-		existed = new PhoneAuthLog(account.getPhone(), Calendar.getInstance().getTime(), secureCode, AuthStatus.Wait);
-		existed.setCallBackUri(account.getCallBackUri());
+		existed = new PhoneAuthLog(account, Calendar.getInstance(), secureCode, AuthStatus.Wait);
 
 		String message = compileMessageText(account.getTemplate(), secureCode);
 
@@ -70,9 +69,7 @@ public class DefaultAuthService implements AuthService{
 			throw new AlreadyConfirmed(account.getPhone());
 		}
 
-		if (account.getCallBackUri() != null) {
-			existed.setCallBackUri(account.getCallBackUri());
-		}
+		existed.validateCallBack(account);
 
 		if (!existed.getCode().contentEquals(account.clearConfirmationCode())) {
 			callBack.doCallBack(existed, false);
