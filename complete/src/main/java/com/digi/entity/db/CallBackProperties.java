@@ -4,6 +4,7 @@ import com.digi.entity.IdEntity;
 import com.digi.entity.enums.CallbackHttpMethod;
 import com.digi.entity.request.AccountToConfirm;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -18,6 +19,7 @@ import static java.util.Objects.nonNull;
 
 @Data
 @Embeddable
+@NoArgsConstructor
 public class CallBackProperties  {
 
 	@Column(name = "callbackuri")

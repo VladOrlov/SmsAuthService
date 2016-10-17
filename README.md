@@ -24,9 +24,9 @@
 **3. Run:**
 
     $ cd TwilioSmsAuthService/complete
-    $ mvn spring-boot:run
+    $ mvn spring-boot:run -Dserver.port=8787
     
-**4. Read API-documentation:** http://localhost:9999/swagger-ui.html
+**4. Read API-documentation:** http://localhost:8787/swagger-ui.html
 
 
 ### HOWTO DOCKER:
@@ -39,3 +39,7 @@
     $ mvn clean package docker:build
     $ docker login --username=luizavladislavna --email=luizavladislavna@gmail.com
     $ docker push luizavladislavna/twilio-sms-verification-service
+    
+    $ docker run -p 8787:8080 luizavladislavna/twilio-sms-verification-service
+
+Go to: http://localhost:8787/swagger-ui.html

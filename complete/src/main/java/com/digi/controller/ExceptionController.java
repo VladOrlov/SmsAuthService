@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @ControllerAdvice
 @SuppressWarnings("UnusedDeclaration")
 @Slf4j
-@Api
-@Order(value = 99)
 public class ExceptionController {
     @ExceptionHandler(Exception.class)
     @ResponseBody

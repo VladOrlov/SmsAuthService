@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Slf4j
 @RequestMapping("/account")
-@Order(value = 0)
 public class AuthController {
 
 	@Autowired
