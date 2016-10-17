@@ -13,14 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.digi;
+package com.digi.mvc;
 
 import com.digi.entity.request.AccountToConfirm;
 import com.digi.entity.request.AccountToVerify;
-import com.digi.help.MockMvcTest;
 import com.digi.util.JsonUtil;
+
+
 import org.junit.Test;
 import org.springframework.http.MediaType;
+
+
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -28,7 +31,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
-public class AuthControllerTests extends MockMvcTest {
+public class AuthControllerTests extends MvcTest {
 
 
 	@Test

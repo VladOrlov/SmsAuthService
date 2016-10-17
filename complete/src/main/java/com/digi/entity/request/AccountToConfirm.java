@@ -1,6 +1,7 @@
 package com.digi.entity.request;
 
 
+import com.digi.util.StrUtil;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModel;
@@ -29,6 +30,6 @@ public class AccountToConfirm extends AccountToVerify {
 	@NonNull private String code;
 
 	public String clearConfirmationCode(){
-		return (getCode().toLowerCase()).replaceAll("[^\\p{IsAlphabetic}^\\p{IsDigit}]", "").toUpperCase();
+		return StrUtil.clearNonAlphabeticNonDigit(getCode().toLowerCase()).toUpperCase();
 	}
 }

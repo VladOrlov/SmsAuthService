@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class AppAspects {
 
-	@Before("execution(* com.digi.service.AuthService.*(..)) && args(account)")
+	@Before("execution(* com.digi.service.impl.DefaultAuthService.*(..)) && args(account)")
 	public void beforeAuthService (AccountToVerify account) {
 		if (account.getPhone() == null || account.getPhone().isEmpty()) {
 			throw new NotEnoughData();

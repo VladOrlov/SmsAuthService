@@ -1,6 +1,5 @@
-package com.digi;
+package com.digi.mvc;
 
-import com.digi.help.MockMvcTest;
 import org.hamcrest.core.IsNull;
 import org.junit.Test;
 
@@ -14,7 +13,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Created by tymoshenkol on 07-Oct-16.
  */
 
-public class TwilioSendTest extends MockMvcTest {
+public class TwilioSendTest extends MvcTest {
 
 	@Test
 	public void testSendAdminSms () throws Exception {

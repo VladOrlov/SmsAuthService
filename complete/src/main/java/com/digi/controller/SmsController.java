@@ -1,7 +1,7 @@
 package com.digi.controller;
 
 import com.digi.entity.request.MessageToSend;
-import com.digi.service.SmsService;
+import com.digi.service.impl.TwilioSmsService;
 import com.twilio.rest.api.v2010.account.Message;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,7 +20,7 @@ import java.util.Calendar;
 @RequestMapping("/sms")
 public class SmsController {
 
-	private final SmsService smsService;
+	private final TwilioSmsService smsService;
 
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public ResponseEntity<Message> testAdmin () {
