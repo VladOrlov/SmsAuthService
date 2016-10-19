@@ -28,8 +28,8 @@ public class AuthController {
 	public ResponseEntity<SuccessResponse> authorise (
 			@ApiParam(value = "Account phone number to verify", required = true)
 			@RequestBody AccountToVerifyExt account) {
-		PhoneAuthLog acc = authService.authorise(account);
-		return ResponseEntity.ok().body(new SuccessResponse(acc));
+		SuccessResponse acc = authService.authorise(account);
+		return ResponseEntity.ok().body(acc);
 	}
 
 	@RequestMapping(value = "/Confirm", method = RequestMethod.POST)

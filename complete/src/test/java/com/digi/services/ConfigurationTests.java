@@ -15,16 +15,16 @@
  */
 package com.digi.services;
 
+import com.digi.config.smsprovider.ClickatellCredentials;
 import com.digi.config.RandomKeyConfig;
 import com.digi.config.TextsConfig;
-import com.digi.config.TwilioCredentials;
+import com.digi.config.smsprovider.TwilioCredentials;
 import com.digi.help.AppSpringBootTestNG;
 import lombok.extern.slf4j.Slf4j;
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.annotations.Test;
 
+import static java.util.Objects.isNull;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
@@ -36,6 +36,8 @@ public class ConfigurationTests extends AppSpringBootTestNG {
 	private TextsConfig smsCfg;
 	@Autowired
 	private TwilioCredentials twilio;
+	@Autowired
+	private ClickatellCredentials clickatell;
 
 
 	@Test
@@ -56,12 +58,26 @@ public class ConfigurationTests extends AppSpringBootTestNG {
 		assertThat(smsCfg.getApplicationName()).isNotEmpty();
 	}
 
+	//To be sure that Twilio or Clickatell credentials exists
 	@Test
+	public void testSmsProviderExistedCredentials () throws Exception {
+		if (isNull(clickatell.getAuthToken())) {
+			testTwilioCredentials();
+		} else {
+			testClickatellCredentials();
+		}
+	}
+
 	public void testTwilioCredentials () throws Exception {
 		log.debug("twilio: {}", twilio);
 		assertThat(twilio.getAccountSid()).isNotEmpty();
 		assertThat(twilio.getAuthToken()).isNotEmpty();
 		assertThat(twilio.getPhoneNumber()).isNotEmpty();
+	}
+
+	public void testClickatellCredentials () throws Exception {
+		log.debug("clickatell: {}", clickatell);
+		assertThat(clickatell.getAuthToken()).isNotEmpty();
 	}
 
 }

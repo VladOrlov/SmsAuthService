@@ -6,12 +6,14 @@ import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
 
 @Configuration
 @ConfigurationProperties(prefix = "spring.datasource")
+@PropertySource( value = "classpath:database.properties")
 public class JpaRepositoryConfig extends HikariConfig {
 
     @Bean

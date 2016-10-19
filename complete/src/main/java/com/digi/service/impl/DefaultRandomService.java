@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.Accessors;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.inject.Inject;
 import static org.bitbucket.dollar.Dollar.$;
@@ -14,11 +15,11 @@ import static org.bitbucket.dollar.Dollar.$;
 @Service
 @Getter
 @Accessors(fluent = true)
-@RequiredArgsConstructor(onConstructor = @__({@Inject}))
 @Slf4j
 public class DefaultRandomService implements RandomService{
 
-	private final RandomKeyConfig config;
+	@Autowired
+	private RandomKeyConfig config;
 	private String validCharacters;
 
 	public String validCharacters () {

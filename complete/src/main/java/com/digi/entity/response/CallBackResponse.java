@@ -21,7 +21,7 @@ public class CallBackResponse extends SuccessResultResponse {
 	public CallBackResponse (PhoneAuthLog account, boolean success) {
 		this.account = account;
 		this.callDate = Calendar.getInstance().getTime();
-		this.setSuccess(success ? 1 : 0);
+		this.setSuccess(Boolean.compare(success, false));
 	}
 
 	public MultiValueMap<String, String> toParams () {

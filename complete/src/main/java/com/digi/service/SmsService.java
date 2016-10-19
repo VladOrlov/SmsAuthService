@@ -1,15 +1,16 @@
 package com.digi.service;
 
+import com.digi.config.Administrator;
 import com.digi.entity.request.MessageToSend;
-import com.twilio.rest.api.v2010.account.Message;
+import com.digi.entity.response.MessageResponse;
 
 public interface SmsService {
 
-	Message sendAdminMessage (String message);
+	MessageResponse sendAdminMessage (String message, Administrator administrator);
 
-	Message sendMessage (String to, String message);
+	MessageResponse sendMessage (String to, String message);
 
-	Message sendMessage (String to, String message, String mediaUrl);
+	MessageResponse sendMessage (String to, String message, String mediaUrl);
 
-	Message sendMessage (MessageToSend message);
+	MessageResponse sendMessage (MessageToSend message);
 }

@@ -19,7 +19,10 @@ public class SuccessResponse extends SuccessResultResponse {
 	private Object result;
 
 	public SuccessResponse(Object data){
-		setSuccess(1);
+		this(data, true);
+	}
+	public SuccessResponse(Object data, boolean success){
+		setSuccess(Boolean.compare(success, false));
 		setResult(data);
 	}
 }

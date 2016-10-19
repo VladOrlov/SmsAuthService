@@ -11,32 +11,36 @@ import com.digi.entity.request.AccountToConfirm;
 import com.digi.entity.request.AccountToVerify;
 import com.digi.entity.request.AccountToVerifyExt;
 import com.digi.entity.request.SmsTemplate;
+import com.digi.entity.response.MessageResponse;
+import com.digi.entity.response.SuccessResponse;
 import com.digi.repository.PhoneAuthLogRepository;
 import com.digi.service.AuthService;
-import com.twilio.rest.api.v2010.account.Message;
+import com.digi.service.impl.smsprovider.SmsProviderFactory;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.experimental.Accessors;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.inject.Inject;
 import java.util.Calendar;
 
 @Service
 @Getter
 @Accessors(fluent = true)
-@RequiredArgsConstructor(onConstructor = @__({@Inject}))
 @Slf4j
 public class DefaultAuthService implements AuthService {
+	@Autowired
+	private SmsProviderFactory smsProvider;
+	@Autowired
+	private DefaultRandomService randService;
+	@Autowired
+	private PhoneAuthLogRepository rLogs;
+	@Autowired
+	private TextsConfig txt;
+	@Autowired
+	private RestCallBackService callBack;
 
-	private final TwilioSmsService smsService;
-	private final DefaultRandomService randService;
-	private final PhoneAuthLogRepository rLogs;
-	private final TextsConfig txt;
-	private final RestCallBackService callBack;
-
-	public PhoneAuthLog authorise (AccountToVerifyExt account) {
+	public SuccessResponse authorise (AccountToVerifyExt account) {
 
 		PhoneAuthLog existed = getFromLog(account);
 
@@ -49,13 +53,19 @@ public class DefaultAuthService implements AuthService {
 
 		String message = compileMessageText(account.getTemplate(), secureCode);
 
-		Message m = smsService().sendMessage(account.getPhone(), message);
+		MessageResponse m = smsProvider.get().sendMessage(account.getPhone(), message);
 
-		existed.setSmsId(m.getSid());
+		existed.setSmsId(m.getMessageID());
+
+		if (!m.isMessageQueued()) {
+			existed.setAuthStatus(AuthStatus.SmsNotDelivered);
+			return new SuccessResponse(existed, false);
+		}
+
 		save(existed);
-
-		return existed;
+		return new SuccessResponse(existed);
 	}
+
 
 	public PhoneAuthLog confirm (AccountToConfirm account) {
 

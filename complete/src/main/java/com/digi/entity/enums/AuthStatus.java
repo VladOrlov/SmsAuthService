@@ -14,7 +14,7 @@ import java.util.NoSuchElementException;
 @Getter
 @RequiredArgsConstructor
 public enum AuthStatus {
-	Wait(0), Confirmed(1);
+	Wait(0), Confirmed(1), SmsNotDelivered(2);
 
 	@NonNull
 	private int id;

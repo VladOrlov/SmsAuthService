@@ -1,4 +1,4 @@
-package com.digi.config;
+package com.digi.config.smsprovider;
 
 
 import org.springframework.context.annotation.ComponentScan;

@@ -5,11 +5,12 @@ import com.digi.entity.request.AccountToConfirm;
 import com.digi.entity.request.AccountToVerify;
 import com.digi.entity.request.AccountToVerifyExt;
 import com.digi.entity.request.SmsTemplate;
+import com.digi.entity.response.SuccessResponse;
 
 
 public interface AuthService {
 
-	PhoneAuthLog authorise (AccountToVerifyExt account);
+	SuccessResponse authorise (AccountToVerifyExt account);
 
 	PhoneAuthLog confirm (AccountToConfirm account);
 

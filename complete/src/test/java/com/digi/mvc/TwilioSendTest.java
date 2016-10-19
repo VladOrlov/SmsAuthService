@@ -22,15 +22,15 @@ public class TwilioSendTest extends MvcTest {
 				.andDo(print())
 				.andExpect(status().isOk())
 
-				.andExpect(jsonPath("$.errorCode").value(IsNull.nullValue()))
+				//.andExpect(jsonPath("$.errorCode").value(IsNull.nullValue()))
 
-				.andExpect(jsonPath("$.sid").value(IsNull.notNullValue()))
-				.andExpect(jsonPath("$.sid").isString())
-				.andExpect(jsonPath("$.sid").isNotEmpty())
+				.andExpect(jsonPath("$.messageID").value(IsNull.notNullValue()))
+				.andExpect(jsonPath("$.messageID").isString())
+				.andExpect(jsonPath("$.messageID").isNotEmpty())
 
-				.andExpect(jsonPath("$.status").value("QUEUED"))
-				.andExpect(jsonPath("$.numMedia").value("0"))
-				.andExpect(jsonPath("$.numSegments").value("1"));
+				.andExpect(jsonPath("$.messageStatus").value(IsNull.notNullValue()))
+				.andExpect(jsonPath("$.messageStatus").isString())
+				.andExpect(jsonPath("$.messageStatus").isNotEmpty());
 	}
 
 }
