@@ -1,14 +1,12 @@
 package com.digi.controller;
 
-import com.digi.config.Administrator;
+import com.digi.config.app.Administrator;
 import com.digi.entity.request.MessageToSend;
 import com.digi.entity.response.MessageResponse;
 import com.digi.service.impl.smsprovider.SmsProviderFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,7 +16,7 @@ import java.util.Calendar;
 
 @RestController
 @Slf4j
-@RequestMapping("/sms")
+@RequestMapping("/v1/sms")
 public class SmsController {
 	@Autowired
 	private SmsProviderFactory provider;

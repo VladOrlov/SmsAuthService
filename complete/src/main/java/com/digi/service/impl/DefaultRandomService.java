@@ -1,14 +1,13 @@
 package com.digi.service.impl;
 
-import com.digi.config.RandomKeyConfig;
+import com.digi.config.app.RandomKeyConfig;
 import com.digi.service.RandomService;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.experimental.Accessors;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import javax.inject.Inject;
+
 import static org.bitbucket.dollar.Dollar.$;
 
 

@@ -1,6 +1,6 @@
 package com.digi.service.impl;
 
-import com.digi.config.TextsConfig;
+import com.digi.config.app.TextsConfig;
 import com.digi.entity.db.PhoneAuthLog;
 import com.digi.entity.enums.AuthStatus;
 import com.digi.entity.exception.AlreadyAuthorized;

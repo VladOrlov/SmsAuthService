@@ -1,4 +1,4 @@
-package com.digi.config;
+package com.digi.config.auto;
 
 
 import com.zaxxer.hikari.HikariConfig;
@@ -13,7 +13,7 @@ import java.sql.SQLException;
 
 @Configuration
 @ConfigurationProperties(prefix = "spring.datasource")
-@PropertySource( value = "classpath:database.properties")
+@PropertySource( value = "classpath:application-database.properties")
 public class JpaRepositoryConfig extends HikariConfig {
 
     @Bean

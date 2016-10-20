@@ -4,7 +4,7 @@ package com.digi.service.impl.smsprovider;
 import com.clickatell.entity.Message;
 import com.clickatell.sdk.ClickatellRest;
 import com.clickatell.sdk.ClickatellSdk;
-import com.digi.config.Administrator;
+import com.digi.config.app.Administrator;
 import com.digi.config.smsprovider.ClickatellCredentials;
 import com.digi.entity.request.MessageToSend;
 import com.digi.entity.response.MessageResponse;
