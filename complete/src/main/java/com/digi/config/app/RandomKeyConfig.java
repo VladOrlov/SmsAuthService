@@ -1,4 +1,4 @@
-package com.digi.config;
+package com.digi.config.app;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

@@ -16,8 +16,8 @@
 package com.digi.services;
 
 import com.digi.config.smsprovider.ClickatellCredentials;
-import com.digi.config.RandomKeyConfig;
-import com.digi.config.TextsConfig;
+import com.digi.config.app.RandomKeyConfig;
+import com.digi.config.app.TextsConfig;
 import com.digi.config.smsprovider.TwilioCredentials;
 import com.digi.help.AppSpringBootTestNG;
 import lombok.extern.slf4j.Slf4j;

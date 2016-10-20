@@ -1,6 +1,6 @@
 package com.digi.service.impl.smsprovider;
 
-import com.digi.config.Administrator;
+import com.digi.config.app.Administrator;
 import com.digi.config.smsprovider.TwilioCredentials;
 import com.digi.entity.request.MessageToSend;
 import com.digi.entity.response.MessageResponse;

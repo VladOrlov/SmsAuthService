@@ -1,6 +1,6 @@
 package com.digi.service;
 
-import com.digi.config.Administrator;
+import com.digi.config.app.Administrator;
 import com.digi.entity.request.MessageToSend;
 import com.digi.entity.response.MessageResponse;
 

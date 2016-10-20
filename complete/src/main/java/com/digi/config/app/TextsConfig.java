@@ -1,4 +1,4 @@
-package com.digi.config;
+package com.digi.config.app;
 
 import com.digi.entity.request.SmsTemplate;
 import lombok.Data;
