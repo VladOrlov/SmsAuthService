@@ -11,6 +11,7 @@ import com.twilio.rest.api.v2010.account.Message;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 
 @Service
@@ -48,7 +49,7 @@ class TwilioSmsService implements SmsService {
 
 	//Twilio feature:
 	private TwilioMessageCreator messageCreator () {
-		if (messageCreator == null) {
+		if (isNull(messageCreator)) {
 			return new TwilioMessageCreator(
 					new TwilioRestClient.Builder(
 							credentials.getAccountSid(),

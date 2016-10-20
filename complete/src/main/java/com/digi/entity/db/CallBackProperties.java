@@ -38,7 +38,7 @@ public class CallBackProperties  {
 		setCallBackMethod(CallbackHttpMethod.valueOf(method));
 	}
 	public CallbackHttpMethod toHttpMethod () {
-		if (callBackMethod != null) {
+		if (nonNull(callBackMethod)) {
 			return callBackMethod;
 		}
 		return CallbackHttpMethod.POST;

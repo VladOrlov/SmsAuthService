@@ -16,6 +16,8 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.net.URI;
 
+import static java.util.Objects.nonNull;
+
 @Service
 @Slf4j
 @Getter
@@ -31,7 +33,7 @@ public class RestCallBackService implements CallBackService {
 
 	@Override
 	public boolean doCallBack (PhoneAuthLog account, boolean success) {
-		if (account.getCallBack() != null) {
+		if (nonNull(account.getCallBack())) {
 			try {
 				send(account.getCallBack(), new CallBackResponse(account, success));
 				return true;

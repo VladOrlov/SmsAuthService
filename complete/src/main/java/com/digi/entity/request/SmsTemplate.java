@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
+import static java.util.Objects.nonNull;
+
 /**
  * Created by tymoshenkol on 12-Oct-16.
  */
@@ -25,7 +27,7 @@ public class SmsTemplate {
 	}
 
 	private String customText(String txt){
-		return applicationName!=null ? txt.replaceAll(TemplateNode.appName.ft(), applicationName): txt;
+		return nonNull(applicationName) ? txt.replaceAll(TemplateNode.appName.ft(), applicationName): txt;
 	}
 
 	public enum TemplateNode{

@@ -7,6 +7,8 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
 
+import static java.util.Objects.isNull;
+
 
 /**
  * Created by tymoshenkol on 06-Oct-16.
@@ -18,7 +20,7 @@ public class AppAspects {
 
 	@Before("execution(* com.digi.service.impl.DefaultAuthService.*(..)) && args(account)")
 	public void beforeAuthService (AccountToVerify account) {
-		if (account.getPhone() == null || account.getPhone().isEmpty()) {
+		if (isNull(account) || isNull(account.getPhone()) || account.getPhone().isEmpty()) {
 			throw new NotEnoughData();
 		}
 		log.debug("beforeAuthService: account={}", account);

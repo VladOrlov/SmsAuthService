@@ -7,6 +7,8 @@ import com.twilio.rest.api.v2010.account.MessageCreator;
 import com.twilio.type.PhoneNumber;
 import lombok.extern.slf4j.Slf4j;
 
+import static java.util.Objects.nonNull;
+
 @Slf4j
 public class TwilioMessageCreator {
 	private final TwilioRestClient client;
@@ -20,7 +22,7 @@ public class TwilioMessageCreator {
 				new PhoneNumber(to),
 				new PhoneNumber(from),
 				body);
-		if (mediaUrl != null)
+		if (nonNull(mediaUrl))
 			messageCreator.setMediaUrl(mediaUrl);
 
 		Message message = messageCreator.create(this.client);

@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import static java.util.Objects.isNull;
 import static org.bitbucket.dollar.Dollar.$;
 
 
@@ -15,14 +16,14 @@ import static org.bitbucket.dollar.Dollar.$;
 @Getter
 @Accessors(fluent = true)
 @Slf4j
-public class DefaultRandomService implements RandomService{
+public class DefaultRandomService implements RandomService {
 
 	@Autowired
 	private RandomKeyConfig config;
 	private String validCharacters;
 
 	public String validCharacters () {
-		if (validCharacters == null) {
+		if (isNull(validCharacters)) {
 			validCharacters = $('0', '9').join() + (config.getWithLetters() ? $('A', 'Z').join() : "");
 		}
 		return validCharacters;

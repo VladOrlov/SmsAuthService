@@ -6,6 +6,8 @@ import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
+import static java.util.Objects.nonNull;
+
 /**
  * Created by tymoshenkol on 06-Oct-16.
  */
@@ -26,7 +28,7 @@ public class ExceptionResponse extends SuccessResultResponse {
 		setEx(ex);
 		setError(ex.getClass().getSimpleName());
 		setMessage(ex.getMessage());
-		setCause(ex.getCause() != null ? ex.getCause().getMessage() : null);
+		setCause(nonNull(ex.getCause()) ? ex.getCause().getMessage() : null);
 		log.error(ex.getMessage(), ex);
 	}
 }

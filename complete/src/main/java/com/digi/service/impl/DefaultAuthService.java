@@ -24,6 +24,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.Calendar;
 
+import static java.util.Objects.isNull;
+import static java.util.Objects.nonNull;
+
 @Service
 @Getter
 @Accessors(fluent = true)
@@ -44,7 +47,7 @@ public class DefaultAuthService implements AuthService {
 
 		PhoneAuthLog existed = getFromLog(account);
 
-		if (existed != null) {
+		if (nonNull(existed)) {
 			throw new AlreadyAuthorized(account.getPhone(), existed.getAuthStatus(), existed.getInitDate());
 		}
 
@@ -71,7 +74,7 @@ public class DefaultAuthService implements AuthService {
 
 		PhoneAuthLog existed = getFromLog(account);
 
-		if (existed == null) {
+		if (isNull(existed)) {
 			throw new NotValidAccountForConfirmation(account.getPhone());
 		}
 
@@ -98,7 +101,7 @@ public class DefaultAuthService implements AuthService {
 	}
 
 	public String compileMessageText (SmsTemplate templ, String secureCode) {
-		if (templ == null || templ.getVerificationText() == null || templ.getVerificationText().isEmpty()) {
+		if (isNull(templ) || isNull(templ.getVerificationText()) || templ.getVerificationText().isEmpty()) {
 			templ = (SmsTemplate) txt();
 		}
 		return templ.customVerificationText(randService().customizeCode(secureCode));

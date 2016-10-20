@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 
+import static java.util.Objects.nonNull;
+
 /**
  * Created by tymoshenkol on 05-Oct-16.
  */
@@ -20,7 +22,7 @@ public enum AuthStatus {
 	private int id;
 
 	public static AuthStatus valueOf (Integer ID) {
-		if (ID != null) {
+		if (nonNull(ID)) {
 			try {
 				return Arrays.stream(values()).filter(x -> x.id == ID).findFirst().get();
 			} catch (NoSuchElementException e) {
