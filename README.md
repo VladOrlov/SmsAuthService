@@ -17,22 +17,23 @@ Sms Authentication Service
 **2. Edit configurations:**
   
     $ cd SmsAuthService/complete/src/main/resources
-    $ gedit database.properties
     $ gedit application.properties
+    $ gedit application-database.properties
+    
   
   **ATTENTION: You have to fill credentials for Twilio or Clickatell messenger API:**
 
-    $ gedit twilio.properties
-    - or:
-    $ gedit clickatell.properties
+    $ gedit application-sms-twilio.properties
+    # or:
+    $ gedit application-sms-clickatell.properties
     
   
 **3. Run:**
 
     $ cd SmsAuthService/complete
-    $ mvn spring-boot:run -Dserver.port=8787
+    $ mvn spring-boot:run -Dserver.port=9988
     
-**4. Read API-documentation:** http://localhost:8787/swagger-ui.html
+**4. Read API-documentation:** http://localhost:9988/swagger-ui.html
 
 
 ### HOWTO DOCKER:
@@ -46,6 +47,8 @@ Sms Authentication Service
     $ docker login --username=luizavladislavna --email=luizavladislavna@gmail.com
     $ docker push luizavladislavna/sms-verification-service
     
-    $ docker run -p 8787:8080 luizavladislavna/sms-verification-service
+**3. Run image:**
+
+    $ docker run -p 9988:8080 luizavladislavna/sms-verification-service
 
 Go to: http://localhost:8787/swagger-ui.html
