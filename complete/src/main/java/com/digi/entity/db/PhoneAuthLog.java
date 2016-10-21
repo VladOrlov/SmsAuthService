@@ -2,10 +2,8 @@ package com.digi.entity.db;
 
 import com.digi.entity.IdEntity;
 import com.digi.entity.enums.AuthStatus;
-import com.digi.entity.enums.CallbackHttpMethod;
 import com.digi.entity.request.AccountToConfirm;
 import com.digi.entity.request.AccountToVerify;
-import com.digi.entity.request.AccountToVerifyExt;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,6 +14,7 @@ import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -24,13 +23,14 @@ import java.util.Date;
  */
 @Entity
 @Data
-@Table(name = "dg_auth_phone")
+@Table(name = "dg_auth_phone",
+		uniqueConstraints = @UniqueConstraint(columnNames = {"phone"}, name = "unique_account_phone_number"))
 @RequiredArgsConstructor
 @NoArgsConstructor
 public class PhoneAuthLog extends IdEntity {
 
 	@NonNull
-	@Column(name = "phone", length = 20, unique = true, nullable = false)
+	@Column(name = "phone", length = 20, nullable = false)
 	private String phone;
 
 	@NonNull
@@ -55,11 +55,11 @@ public class PhoneAuthLog extends IdEntity {
 	private CallBackProperties callBack;
 
 
-	public PhoneAuthLog (AccountToVerify  account, Calendar initDate, String code, AuthStatus status) {
+	public PhoneAuthLog (AccountToVerify account, Calendar initDate, String code, AuthStatus status) {
 		this(account.getPhone(), initDate.getTime());
 		setCode(code);
 		setAuthStatus(status);
-		setCallBack(new CallBackProperties(account.getCallBackUri(),account.getCallBackMethod() ));
+		setCallBack(new CallBackProperties(account.getCallBackUri(), account.getCallBackMethod()));
 	}
 
 

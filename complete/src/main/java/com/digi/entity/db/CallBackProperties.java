@@ -22,10 +22,10 @@ import static java.util.Objects.nonNull;
 @NoArgsConstructor
 public class CallBackProperties  {
 
-	@Column(name = "callbackuri")
+	@Column(name = "callbackuri", length = 1000)
 	private String callBackUri;
 
-	@Column(name = "callbackmethod")
+	@Column(name = "callbackmethod", length = 4)
 	@Enumerated(EnumType.STRING)
 	private CallbackHttpMethod callBackMethod;
 
