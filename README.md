@@ -51,4 +51,6 @@ Sms Authentication Service
 
     $ docker run -p 9988:8080 luizavladislavna/sms-verification-service
 
-Go to: http://localhost:8787/swagger-ui.html
+**Go to:**
+http://localhost:9988/swagger-ui.html
+
