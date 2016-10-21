@@ -16,7 +16,7 @@ import static java.util.Objects.requireNonNull;
 
 @Service
 @Slf4j
-class TwilioSmsService implements SmsService {
+public class TwilioSmsService implements SmsService {
 
 	private TwilioCredentials credentials;
 	private TwilioMessageCreator messageCreator;

@@ -15,7 +15,9 @@ import com.digi.entity.response.MessageResponse;
 import com.digi.entity.response.SuccessResponse;
 import com.digi.repository.PhoneAuthLogRepository;
 import com.digi.service.AuthService;
-import com.digi.service.impl.smsprovider.SmsProviderFactory;
+import com.digi.service.CallBackService;
+import com.digi.service.ProviderFactory;
+import com.digi.service.RandomService;
 import lombok.Getter;
 import lombok.experimental.Accessors;
 import lombok.extern.slf4j.Slf4j;
@@ -33,15 +35,15 @@ import static java.util.Objects.nonNull;
 @Slf4j
 public class DefaultAuthService implements AuthService {
 	@Autowired
-	private SmsProviderFactory smsProvider;
+	private ProviderFactory smsProvider;
 	@Autowired
-	private DefaultRandomService randService;
+	private RandomService randService;
 	@Autowired
 	private PhoneAuthLogRepository rLogs;
 	@Autowired
 	private TextsConfig txt;
 	@Autowired
-	private RestCallBackService callBack;
+	private CallBackService callBack;
 
 	public SuccessResponse authorise (AccountToVerifyExt account) {
 

@@ -16,7 +16,7 @@ import static java.util.Objects.requireNonNull;
 
 @Service
 @Slf4j
-class ClickatellSmsService implements SmsService {
+public class ClickatellSmsService implements SmsService {
 
 	private ClickatellCredentials credentials;
 	private ClickatellSdk clickatell;

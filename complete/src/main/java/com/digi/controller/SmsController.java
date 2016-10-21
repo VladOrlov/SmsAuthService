@@ -3,7 +3,7 @@ package com.digi.controller;
 import com.digi.config.app.Administrator;
 import com.digi.entity.request.MessageToSend;
 import com.digi.entity.response.MessageResponse;
-import com.digi.service.impl.smsprovider.SmsProviderFactory;
+import com.digi.service.ProviderFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +19,7 @@ import java.util.Calendar;
 @RequestMapping("/v1/sms")
 public class SmsController {
 	@Autowired
-	private SmsProviderFactory provider;
+	private ProviderFactory provider;
 
 	@Autowired
 	private Administrator administrator;

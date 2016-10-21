@@ -3,7 +3,7 @@ package com.digi.services;
 import com.digi.entity.db.CallBackProperties;
 import com.digi.entity.db.PhoneAuthLog;
 import com.digi.help.AppSpringBootTestNG;
-import com.digi.service.impl.RestCallBackService;
+import com.digi.service.CallBackService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.annotations.Test;
@@ -19,7 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class CallBackTests extends AppSpringBootTestNG {
 
 	@Autowired
-	protected RestCallBackService callBack;
+	protected CallBackService callBack;
 
 	@Test
 	public void testCallBackService () {

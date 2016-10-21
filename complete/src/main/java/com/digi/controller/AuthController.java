@@ -4,11 +4,10 @@ import com.digi.entity.db.PhoneAuthLog;
 import com.digi.entity.request.AccountToConfirm;
 import com.digi.entity.request.AccountToVerifyExt;
 import com.digi.entity.response.SuccessResponse;
-import com.digi.service.impl.DefaultAuthService;
+import com.digi.service.AuthService;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
 
 	@Autowired
-	private DefaultAuthService authService;
+	private AuthService authService;
 
 	@RequestMapping(value = "/Authorise", method = RequestMethod.POST)
 	public ResponseEntity<SuccessResponse> authorise (
