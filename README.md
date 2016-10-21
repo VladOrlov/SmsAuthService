@@ -10,6 +10,12 @@ Sms Authentication Service
 
 ### HOWTO Start:
 
+**0. Prepare Clickatell Library:**
+    
+    $ git clone https://github.com/sealTLV/Clickatell4j
+    $ cd Clickatell4j
+    $ mvn clean compile install -Dmaven.test.skip=true
+    
 **1. Clone project:**
     
     $ git clone https://github.com/sealTLV/SmsAuthService
