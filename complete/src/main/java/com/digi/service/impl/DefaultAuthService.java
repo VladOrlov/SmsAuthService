@@ -98,18 +98,18 @@ public class DefaultAuthService implements AuthService {
 		return existed;
 	}
 
-	public PhoneAuthLog getFromLog (AccountToVerify account) {
+	protected PhoneAuthLog getFromLog (AccountToVerify account) {
 		return rLogs().findByPhone(account.getPhone());
 	}
 
-	public String compileMessageText (SmsTemplate templ, String secureCode) {
+	protected String compileMessageText (SmsTemplate templ, String secureCode) {
 		if (isNull(templ) || isNull(templ.getVerificationText()) || templ.getVerificationText().isEmpty()) {
 			templ = (SmsTemplate) txt();
 		}
 		return templ.customVerificationText(randService().customizeCode(secureCode));
 	}
 
-	public void save (PhoneAuthLog logAcc) {
+	protected void save (PhoneAuthLog logAcc) {
 		rLogs().save(logAcc);
 		log.debug("PhoneAuthLog/afterSave: {}", logAcc);
 	}

@@ -14,9 +14,4 @@ public interface AuthService {
 
 	PhoneAuthLog confirm (AccountToConfirm account);
 
-	PhoneAuthLog getFromLog (AccountToVerify account);
-
-	String compileMessageText (SmsTemplate templ, String secureCode);
-
-	void save (PhoneAuthLog logAcc);
 }
