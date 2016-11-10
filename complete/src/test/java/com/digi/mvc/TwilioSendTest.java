@@ -18,7 +18,7 @@ public class TwilioSendTest extends MvcTest {
 	@Test
 	public void testSendAdminSms () throws Exception {
 
-		this.mockMvc.perform(get("/sms/admin"))
+		this.mockMvc.perform(get("/v1/sms/admin"))
 				.andDo(print())
 				.andExpect(status().isOk())
 

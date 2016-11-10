@@ -1,6 +1,5 @@
 package com.digi.entity.db;
 
-import com.digi.entity.IdEntity;
 import com.digi.entity.enums.CallbackHttpMethod;
 import com.digi.entity.request.AccountToConfirm;
 import lombok.Data;
@@ -10,6 +9,8 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.Transient;
+
 
 import static java.util.Objects.nonNull;
 
@@ -28,6 +29,9 @@ public class CallBackProperties  {
 	@Column(name = "callbackmethod", length = 4)
 	@Enumerated(EnumType.STRING)
 	private CallbackHttpMethod callBackMethod;
+
+	@Transient
+	protected String callBackStatus;
 
 	public CallBackProperties (String callBackUri, String callBackMethod) {
 		setCallBackUri(callBackUri);

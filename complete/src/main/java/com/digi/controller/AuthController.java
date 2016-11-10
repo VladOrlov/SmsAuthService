@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Slf4j
 @RequestMapping("/v1/account")
-
 public class AuthController {
 
 	@Autowired

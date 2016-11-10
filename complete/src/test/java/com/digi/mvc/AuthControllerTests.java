@@ -18,14 +18,9 @@ package com.digi.mvc;
 import com.digi.entity.request.AccountToConfirm;
 import com.digi.entity.request.AccountToVerify;
 import com.digi.util.JsonUtil;
-
-
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.http.MediaType;
-
-
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -45,7 +40,7 @@ public class AuthControllerTests extends MvcTest {
 		account.setCode("test");
 
 		this.mockMvc.perform(
-				post("/account/Confirm")
+				post("/v1/account/Confirm")
 						.content(JsonUtil.asJsonString(account))
 						.contentType(MediaType.APPLICATION_JSON)
 						.accept(MediaType.APPLICATION_JSON))
@@ -60,7 +55,7 @@ public class AuthControllerTests extends MvcTest {
 		AccountToVerify account = new AccountToVerify("14053264519");
 
 		this.mockMvc.perform(
-				post("/account/Authorise")
+				post("/v1/account/Authorise")
 						.content(JsonUtil.asJsonString(account))
 						.contentType(MediaType.APPLICATION_JSON)
 						.accept(MediaType.APPLICATION_JSON))
@@ -68,7 +63,7 @@ public class AuthControllerTests extends MvcTest {
 				.andExpect(status().isOk());
 
 		this.mockMvc.perform(
-				post("/account/Confirm")
+				post("/v1/account/Confirm")
 						.content(JsonUtil.asJsonString(account))
 						.contentType(MediaType.APPLICATION_JSON)
 						.accept(MediaType.APPLICATION_JSON))
